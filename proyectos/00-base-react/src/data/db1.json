@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "name": "Clean Code: A Handbook of Agile Software Craftsmanship",
+      "price": 39.99,
+      "img": "https://example.com/clean-code.jpg",
+      "tags": ["Java", "Agile", "Software Development"]
+    },
+    {
+      "id": 2,
+      "name": "You Don't Know JS: Scope & Closures",
+      "price": 25.99,
+      "img": "https://example.com/you-dont-know-js.jpg",
+      "tags": ["JavaScript", "Web Development"]
+    },
+    {
+      "id": 3,
+      "name": "The Pragmatic Programmer: Your Journey to Mastery",
+      "price": 45.00,
+      "img": "https://example.com/pragmatic-programmer.jpg",
+      "tags": ["General Programming", "Best Practices"]
+    },
+    {
+      "id": 4,
+      "name": "Eloquent JavaScript: A Modern Introduction to Programming",
+      "price": 32.50,
+      "img": "https://example.com/eloquent-javascript.jpg",
+      "tags": ["JavaScript", "Web Development", "Functional Programming"]
+    },
+    {
+      "id": 5,
+      "name": "Python Crash Course: A Hands-On, Project-Based Introduction to Programming",
+      "price": 29.95,
+      "img": "https://example.com/python-crash-course.jpg",
+      "tags": ["Python", "Beginner Friendly"]
+    },
+    {
+      "id": 6,
+      "name": "Design Patterns: Elements of Reusable Object-Oriented Software",
+      "price": 55.00,
+      "img": "https://example.com/design-patterns.jpg",
+      "tags": ["Design Patterns", "Object-Oriented Programming", "C++", "Java"]
+    },
+    {
+      "id": 7,
+      "name": "Introduction to Algorithms",
+      "price": 80.00,
+      "img": "https://example.com/introduction-to-algorithms.jpg",
+      "tags": ["Algorithms", "Data Structures", "Computer Science"]
+    },
+    {
+      "id": 8,
+      "name": "Head First Design Patterns",
+      "price": 40.99,
+      "img": "https://example.com/head-first-design-patterns.jpg",
+      "tags": ["Java", "Design Patterns", "Beginner Friendly"]
+    },
+    {
+      "id": 9,
+      "name": "Effective Java",
+      "price": 50.00,
+      "img": "https://example.com/effective-java.jpg",
+      "tags": ["Java", "Best Practices", "Advanced"]
+    },
+    {
+      "id": 10,
+      "name": "JavaScript: The Good Parts",
+      "price": 19.99,
+      "img": "https://example.com/javascript-the-good-parts.jpg",
+      "tags": ["JavaScript", "Web Development", "Best Practices"]
+    }
+  ]
+  
