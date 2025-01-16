@@ -10,6 +10,7 @@ import Padre2 from "./components/UseStage/props2/Padre2"
 import RegistrarFormulario from "./components/UseStage/RegistrarFormulario"
 import Timer from "./components/UserEffectCicloVida/Timer"
 import CardPlaceHolder from "./components/UserEffectCicloVida/CardPlaceHolder"
+import ProductList from "./components/UseEffect/productList"
 
 const App = () => {
   const [counter, setCounter] = useState(0);
@@ -38,9 +39,10 @@ const App = () => {
         <Nieto2 handleClick={handleClick} />
       </Hijo2>
      </Padre2> */}
-     <hr className="mt-10"/>
+     {/* <hr className="mt-10"/> */}
      {/* <Timer /> */}
-     <CardPlaceHolder />
+     {/* <CardPlaceHolder /> */}
+     <ProductList /> 
     </>
   )
 }
