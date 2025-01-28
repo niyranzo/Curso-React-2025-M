@@ -38,11 +38,15 @@ export const TaskProvider = ({ children }) => {
         );
     }
     // editar 
-    const editTask = () => {
-
+    const editTask = (taskId, text) => {
+        setTasks((prevTasks) => 
+            prevTasks.map((task) => 
+                task.id === taskId ? { ...task, title: text } : task 
+            )
+        );
     }
         return (
-        <TaskContext.Provider value={ {tasks, addTask, deleteTask, completeTask} }>
+        <TaskContext.Provider value={ {tasks, addTask, deleteTask, completeTask, editTask} }>
             {children}
         </TaskContext.Provider>
     );
