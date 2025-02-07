@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+const url = import.meta.env.VITE_API_URL;
+const pokemonUrl = import.meta.env.VITE_POKEMON;
 
 const SearchPage = () => {
     const navigate = useNavigate();
@@ -9,12 +11,13 @@ const SearchPage = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         try {
-            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search.toLocaleLowerCase()}`);
+            const response = await fetch(`${url}${pokemonUrl}/${search.toLocaleLowerCase()}`);
             if(!response.ok){
                 throw new Error("Error al obtener el pokemon");
             }
             const data = await response.json();
-            console.log(data);
+            console.log(`${url}${pokemonUrl}/${search.toLocaleLowerCase()}`);
+            console.log(data[0]);
             navigate(`/search/${search.toLocaleLowerCase()}`)
         } catch (error) {
             toast.error("Pokemon no encontrado");
@@ -32,7 +35,7 @@ const SearchPage = () => {
                 onChange={(e)=>{setSearch(e.target.value)}}
                 className="flex-1 p-2 border rounded-lg"
                 />
-                <button onClick="submit" className="bg-rose-200 hover:bg-rose-100 px-4 py-2 rounded-lg">Buscar</button>
+                <button type="submit" className="bg-rose-200 hover:bg-rose-100 px-4 py-2 rounded-lg">Buscar</button>
             </div>
         </form>
     </div>

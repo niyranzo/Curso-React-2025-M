@@ -2,8 +2,14 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { usePokemon } from "../context/PokemonContext";
 import Spinner from "../components/Spinner";
+const url = import.meta.env.VITE_API_URL;
+const pokemonUrl = import.meta.env.VITE_POKEMON;
 
 const Home = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const pokemonPath = import.meta.env.VITE_POKEMON;
+    // Asegurémonos de que la URL está bien formada
+    console.log('Fetching from URL:', url); // Para debug
     const { addToFavorites} = usePokemon();
     const [ pokemons, setPokemons ] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -14,24 +20,13 @@ const Home = () => {
 
     const fetchPokemons = async () =>{
         try {
-            const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20");
+            const response = await fetch(apiUrl);
             if(!response.ok){
                 throw new Error("Error al obtener los pokemons");
             }
             const data = await response.json();
-
-            // Ahora obtengamos la daa de todos los pokemos en paralelo
-            const pokemonDetail = await Promise.all(
-                data.results.map(async (pokemon) => {
-                    const respo = await fetch(pokemon.url);
-                    if(!respo.ok){
-                        throw new Error("Error en pokemonDetail");
-                    }
-                    return respo.json();
-                })
-            )
             //seteo en el estado los pokemonDetails
-            setPokemons(pokemonDetail);
+            setPokemons(data);
 
         } catch (error) {
             console.log("Error fetching pokemons", error);
@@ -55,7 +50,7 @@ const Home = () => {
                 pokemons.map(pokemon => ( //lo primero que va dentro del map tiene q tener un key
                     <div key={pokemon.id} className="bg-white shadow-md rounded-md p-4">
                         <div className="relative group">
-                            <img src={pokemon.sprites.front_default} alt={pokemon.name} 
+                            <img src={pokemon.image} alt={pokemon.name} 
                                 className="w-32 h-32 mx-auto transform group-hover:scale-110 transition-transform duration-500"/>
                         </div>
                         <h2 className="text-xl font-semibold text-center capitalize mt-2">{pokemon.name}</h2>
@@ -65,13 +60,15 @@ const Home = () => {
                             Añadir a favoritos</button>
                       
                             <Link 
-                                to={`/search/${pokemon.name}`} 
+                                to={`/search/${pokemon.id}`} 
                                 className="bg-cyan-400 text-white px-4 py-2 rounded hover:bg-cyan-600"
                             >Ver detalles</Link>
                            
                         </div>
+                        {console.log(`${url}${pokemonUrl}/${pokemon.id}`)}
                     </div>
                 ))
+
             }
 
 

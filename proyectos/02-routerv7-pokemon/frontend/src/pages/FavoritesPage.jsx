@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import { usePokemon } from "../context/PokemonContext"
 import { ROUTES } from "../routes/paths";
 
+
+
 const FavoritesPage = () => {
-  const { favorites, removeFromFavorites } = usePokemon();
+  const { favorites, removeFromFavorites} = usePokemon();
+
   if(favorites.length === 0){
     return (
       <div className="text-center mt-8">
@@ -23,10 +26,10 @@ const FavoritesPage = () => {
           Tus Pokemons favoritos
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* tarjeta para 1 pokemon */}
+          {/* tarjeta para 1 pokemon */ console.log(favorites)}
           {favorites.map(pokemon => (
             <div key={pokemon.id} className="border rounded-lg p-4 shadow-amber-200 shadow-lg">  
-                <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} className="w-32 h-32 mx-auto"/>
+                <img src={pokemon.image} alt={pokemon.name} className="w-32 h-32 mx-auto"/>
                 <h2 className="text-xl font-semibold text-enter capitalize mt-2">
                   {pokemon.name}
                 </h2>

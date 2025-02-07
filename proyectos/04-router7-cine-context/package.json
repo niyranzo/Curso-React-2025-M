@@ -1,22 +1,22 @@
 {
-  "name": "frontend",
+  "name": "04-router7-cine-context",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --host 0.0.0.0",
-    "dev": "vite --host 0.0.0.0",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.0",
+    "@heroicons/react": "^2.2.0",
+    "@tailwindcss/vite": "^4.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.1.3",
-    "sonner": "^1.7.2",
-    "tailwindcss": "^4.0.0"
+    "react-router-dom": "^7.1.5",
+    "sonner": "^1.7.4",
+    "tailwindcss": "^4.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
