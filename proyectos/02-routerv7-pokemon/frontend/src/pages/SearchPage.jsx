@@ -15,9 +15,6 @@ const SearchPage = () => {
             if(!response.ok){
                 throw new Error("Error al obtener el pokemon");
             }
-            const data = await response.json();
-            console.log(`${url}${pokemonUrl}/${search.toLocaleLowerCase()}`);
-            console.log(data[0]);
             navigate(`/search/${search.toLocaleLowerCase()}`)
         } catch (error) {
             toast.error("Pokemon no encontrado");

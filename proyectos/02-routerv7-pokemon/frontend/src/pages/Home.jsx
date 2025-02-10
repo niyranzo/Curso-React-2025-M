@@ -4,12 +4,9 @@ import { usePokemon } from "../context/PokemonContext";
 import Spinner from "../components/Spinner";
 const url = import.meta.env.VITE_API_URL;
 const pokemonUrl = import.meta.env.VITE_POKEMON;
+const fullUrl = `${url}${pokemonUrl}`
 
 const Home = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    const pokemonPath = import.meta.env.VITE_POKEMON;
-    // Asegurémonos de que la URL está bien formada
-    console.log('Fetching from URL:', url); // Para debug
     const { addToFavorites} = usePokemon();
     const [ pokemons, setPokemons ] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -20,7 +17,7 @@ const Home = () => {
 
     const fetchPokemons = async () =>{
         try {
-            const response = await fetch(apiUrl);
+            const response = await fetch(fullUrl);
             if(!response.ok){
                 throw new Error("Error al obtener los pokemons");
             }
@@ -68,10 +65,7 @@ const Home = () => {
                         {console.log(`${url}${pokemonUrl}/${pokemon.id}`)}
                     </div>
                 ))
-
             }
-
-
             </div>
         </div>
     )

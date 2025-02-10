@@ -5,13 +5,18 @@ FROM node:20
 WORKDIR /app
 
 # Copiar archivos del frontend
-COPY . .
+COPY package*.json ./
 
 # Instalar dependencias
 RUN npm install
 
-# Exponer el puerto (solo si usas Vite para desarrollo)
+# Copiar el resto de los archivos
+COPY . .
+
+# Exponer el puerto
 EXPOSE 5173
 
-# Comando para servir la aplicación en producción
-CMD ["npm", "start"]
+ENV HOST=0.0.0.0
+
+# Comando para servir la aplicación
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
