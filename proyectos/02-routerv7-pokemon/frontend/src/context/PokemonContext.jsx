@@ -7,36 +7,35 @@ const PokemonContext = createContext();
 
 export function PokemonProvider({children}) {
     const [favorites, setFavorites] = useState([]);
+
     useEffect(() => {
         fetchFav();
-    }, [])
-    async function fetchFav(){
+    }, []);
+
+    async function fetchFav() {
         try {
-          const response = await fetch(`${url}${favoriteUrl}`);
-          if(!response.ok){
-            throw new Error("Error en el fetch");
-          }
-          const data = await response.json();
-        //   Guardo los favoritos si hay data en la tabla favoritos
-          if(data.length !== 0){
-            setFavorites(data);
-          }
+            const response = await fetch(`${url}${favoriteUrl}`);
+            if (!response.ok) {
+                throw new Error("Error en el fetch");
+            }
+            const data = await response.json();
+            if (data.length !== 0) {
+                setFavorites(data);
+            }
         } catch (error) {
-          console.error("Error al traer los favoritos");
+            console.error("Error al traer los favoritos");
         }
-      }
-    // añadir pokemons a favoritos
-    const addToFavorites = async (pokemon)=>{
-        //comprobar si el pokemon ya está en favoritos
-        if(favorites.some(p=>pokemon.id===p.id)){
-            //pokemon repe --> error
+    }
+
+    const addToFavorites = async (pokemon) => {
+        if (favorites.some(p => pokemon.id === p.id)) {
             toast.error(`El pokemon ${pokemon.name} ya esta en favoritos`, {
-                style : {
+                style: {
                     background: 'red',
-                    color: 'white', 
+                    color: 'white',
                     border: '1px solid black',
                 },
-                icon:'⭐',
+                icon: '⭐',
             });
             return;
         }
@@ -45,27 +44,26 @@ export function PokemonProvider({children}) {
             const response = await fetch(`${url}${favoriteUrl}`, {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
-                // Envía el objeto pokemon dentro de la propiedad `pokemon`
-                body: JSON.stringify({ pokemon }), 
-              });
-            if(!response.ok){
+                body: JSON.stringify({ pokemon }),
+            });
+            if (!response.ok) {
                 throw new Error("No se pudo guardar el pokemon fav en la base de datos");
             }
         } catch (error) {
-            console.error("Error en el post")
+            console.error("Error en el post");
         }
         toast.success(`El pokemon ${pokemon.name} se añadió a favoritos`, {
-            style : {
+            style: {
                 background: 'green',
-                color: 'white', 
+                color: 'white',
                 border: '1px solid black',
             },
-            icon:'⭐',
+            icon: '⭐',
         });
-        return;
     }
+
     const removeFromFavorites = async (pokemonId) => {
         try {
             const response = await fetch(`${url}${favoriteUrl}/${pokemonId}`, {
@@ -74,10 +72,9 @@ export function PokemonProvider({children}) {
                     "Content-Type": "application/json",
                 },
             });
-            if(!response.ok){
-                throw new Error("No se pudo borrar de fav el pk de la base de datos");   
+            if (!response.ok) {
+                throw new Error("No se pudo borrar de fav el pk de la base de datos");
             }
-
         } catch (error) {
             console.error("Error en el DELETE", error);
         }
@@ -88,21 +85,21 @@ export function PokemonProvider({children}) {
                 color: "white",
                 border: "1px solid black"
             },
-            icon : "🗑️"
+            icon: "🗑️"
         })
-};
-    }
+    };
+
     return (
-        <PokemonContext.Provider value={{ favorites, addToFavorites, removeFromFavorites}}> 
-        {children}
+        <PokemonContext.Provider value={{ favorites, addToFavorites, removeFromFavorites }}>
+            {children}
         </PokemonContext.Provider>
-    )
- 
+    );
+}
 
 export const usePokemon = () => {
     const context = useContext(PokemonContext);
-    if(context === undefined){
+    if (context === undefined) {
         throw new Error("usePokemon debe ser usado dentro del contexto");
     }
     return context;
-}
+};
