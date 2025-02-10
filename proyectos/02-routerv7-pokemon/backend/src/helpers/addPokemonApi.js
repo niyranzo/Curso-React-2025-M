@@ -4,7 +4,6 @@ import fetch from 'node-fetch'; // Importa fetch desde node-fetch
 export const urlApi = process.env.URL; 
 
 
-
 /**
  * @description: funcion que añade los pokemons a la base de datos 
  */

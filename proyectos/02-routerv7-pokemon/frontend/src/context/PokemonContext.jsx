@@ -90,13 +90,14 @@ export function PokemonProvider({children}) {
             },
             icon : "🗑️"
         })
+};
     }
     return (
         <PokemonContext.Provider value={{ favorites, addToFavorites, removeFromFavorites}}> 
         {children}
         </PokemonContext.Provider>
     )
-}
+ 
 
 export const usePokemon = () => {
     const context = useContext(PokemonContext);
